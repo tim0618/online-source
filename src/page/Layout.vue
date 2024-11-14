@@ -6,9 +6,10 @@
       style="height: 100vh"
       class="shadow-2 rounded-borders"
     >
-      <q-header elevated class="bg-cyan-10">
+      <q-header elevated class="bg-cyan-10" style="height: 10vh;">
         <q-toolbar>
           <q-toolbar-title>Header</q-toolbar-title>
+          <button> 登出</button>
         </q-toolbar>
       </q-header>
 

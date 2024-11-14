@@ -1,8 +1,7 @@
 <template>
-  <p v-for="n in 15" :key="n">
-    歡迎光臨
-  </p>
+  <div style="height: 90vh; background-color: #1a1a1d">
+    <p style="color: white">歡迎光臨</p>
+  </div>
 </template>
 
-<script>
-</script>
+<script></script>

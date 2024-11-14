@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import { Quasar } from "quasar";
+import { Quasar, Dialog } from "quasar";
 
 import "@quasar/extras/material-icons/material-icons.css";
 import "quasar/src/css/index.sass";
@@ -44,7 +44,7 @@ const router = createRouter({
 });
 
 const myApp = createApp(App).use(router).use(Quasar, {
-  plugins: {},
+  plugins: { Dialog },
 });
 
 myApp.mount("#app");
