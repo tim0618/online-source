@@ -6,10 +6,10 @@
       style="height: 100vh"
       class="shadow-2 rounded-borders"
     >
-      <q-header elevated class="bg-cyan-10" style="height: 10vh;">
+      <q-header elevated class="bg-cyan-10" style="height: 10vh">
         <q-toolbar>
           <q-toolbar-title>Header</q-toolbar-title>
-          <button> 登出</button>
+          <button @click="logout">登出</button>
         </q-toolbar>
       </q-header>
 
@@ -91,6 +91,12 @@
 
 <script setup>
 import { RouterView } from "vue-router";
+import { useRouter } from "vue-router"; 
+const router = useRouter();
+
+const logout = () =>{
+  router.push("/");
+}
 </script>
 
 <style>
