@@ -16,6 +16,8 @@ const account = ref("");
 const password = ref("");
 const login = () => {
   if (account.value && password.value) {
+    localStorage.setItem("account", account.value);
+    localStorage.setItem("role", "admin");
     router.push('/index');  // 直接跳轉到 '/index'
   }
 };
