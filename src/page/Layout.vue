@@ -95,6 +95,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const logout = () =>{
+  localStorage.clear();
   router.push("/");
 }
 </script>
