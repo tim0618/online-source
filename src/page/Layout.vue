@@ -13,7 +13,7 @@
         </q-toolbar>
       </q-header>
 
-      <q-drawer v-model="drawer" show-if-above :width="250" :breakpoint="400">
+      <q-drawer show-if-above :width="250" :breakpoint="400">
         <q-scroll-area
           style="
             height: calc(100% - 200px);
@@ -91,13 +91,13 @@
 
 <script setup>
 import { RouterView } from "vue-router";
-import { useRouter } from "vue-router"; 
+import { useRouter } from "vue-router";
 const router = useRouter();
 
-const logout = () =>{
+const logout = () => {
   localStorage.clear();
   router.push("/");
-}
+};
 </script>
 
 <style>
