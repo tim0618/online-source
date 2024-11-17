@@ -8,22 +8,28 @@
 
 <script setup>
 import { ref } from "vue";
-import { useRouter } from 'vue-router';
-  
+import { useRouter } from "vue-router";
+
 const router = useRouter();
 const account = ref("");
 const password = ref("");
 const loginData = ref({});
-  
+
 const login = () => {
   loginData.value = accountList.find(function (x) {
     return x.account == account.value;
   });
-  
+
   if (account.value && password.value) {
-    localStorage.setItem("account", loginData.value.account);
-    localStorage.setItem("role", loginData.value.role);
-    router.push('/index');  // 直接跳轉到 '/index'
+    if (loginData.value) {
+      localStorage.setItem("account", loginData.value.account);
+      localStorage.setItem("role", loginData.value.role);
+      router.push("/index"); // 直接跳轉到 '/index'
+    } else {
+      console.log("查無此帳號");
+    }
+  } else {
+    console.log("請輸入帳密");
   }
 };
 
