@@ -14,12 +14,20 @@
   </div>
 </template>
 <style scoped>
-.manageAllData{
-    display: flex;
-    border: 1px black solid;
+.manageAllData {
+  display: flex;
+  border: 1px black solid;
+  flex-wrap: wrap;
 }
-.my-card{
+.my-card {
+  width: 100%;
+  max-width: 250px;
+}
+
+/* @media (max-width: 960px) {
+  .my-card {
     width: 100%;
-    max-width: 300px;
-}
+    max-width: 350px;
+  }
+} */
 </style>
