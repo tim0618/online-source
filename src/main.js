@@ -12,6 +12,7 @@ import Login from "./page/Login.vue";
 import Index from "./page/Index.vue";
 import LearData from "./page/LearnData.vue";
 import TrafficData from "./page/TrafficData.vue";
+import Experience from "./page/Experience.vue";
 import ManageData from "./page/ManageData.vue";
 
 const routes = [
@@ -31,6 +32,10 @@ const routes = [
   {
     path: "/TrafficData",
     component: TrafficData,
+  },
+  {
+    path: "/Experience",
+    component: Experience,
   },
   {
     path: "/ManageData",

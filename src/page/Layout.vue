@@ -49,12 +49,21 @@
               <router-link class="navbar" to="/TrafficData">
                 <q-item clickable v-ripple>
                   <q-item-section avatar>
-                    <q-icon name="drafts" />
+                    <q-icon name="send" />
                   </q-item-section>
                   <q-item-section> 流量數據 </q-item-section>
                 </q-item>
               </router-link>
             </q-expansion-item>
+
+            <router-link class="navbar" to="/Experience">
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="drafts" />
+                </q-item-section>
+                <q-item-section> 學習心得 </q-item-section>
+              </q-item>
+            </router-link>
 
             <router-link class="navbar" to="/ManageData">
               <q-item active clickable v-ripple>
@@ -64,6 +73,7 @@
                 <q-item-section> 資源管理 </q-item-section>
               </q-item>
             </router-link>
+
           </q-list>
         </q-scroll-area>
 
