@@ -3,45 +3,32 @@
     <div class="col s12">
       <div id="animationelement" :class="animationClass"></div>
     </div>
-  </div>
 
-  <div class="container center-align">
-    <div class="row">
-      <div class="col s12 m3 l2">
-        <button
-          class="waves-effect waves-light btn-large white blue-text"
-          @click="triggerRotation"
-        >
-          floater
-        </button>
-      </div>
-    </div>
+    <button
+      class="waves-effect waves-light btn-large white blue-text"
+      @click="triggerRotation"
+    >
+      floater
+    </button>
+
+    <p>
+      參考
+      <a href="https://kristofferandreasen.github.io/wickedCSS/#"
+        >https://kristofferandreasen.github.io/wickedCSS/#</a
+      >
+    </p>
   </div>
-  參考 <a href="https://kristofferandreasen.github.io/wickedCSS/#">https://kristofferandreasen.github.io/wickedCSS/#</a>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 
-export default {
-  name: "AnimationComponent",
-  setup() {
-    // 動態綁定動畫 class
-    const animationClass = ref("");
-
-    // 按下按鈕觸發動畫
-    const triggerRotation = () => {
-      animationClass.value = ""; // 清除所有 class
-      setTimeout(() => {
-        animationClass.value = "rotation"; // 加入旋轉動畫 class
-      }, 50); // 確保 DOM 正確刷新
-    };
-
-    return {
-      animationClass,
-      triggerRotation,
-    };
-  },
+const animationClass = ref("rotation"); // 直接預設
+const triggerRotation = () => {
+  animationClass.value = ""; // 清除所有 class
+  setTimeout(() => {
+    animationClass.value = "rotation"; // 加入旋轉動畫 class
+  }, 50); // 確保 DOM 正確刷新
 };
 </script>
 
@@ -57,7 +44,7 @@ export default {
 }
 
 .rotation {
-  animation: rotate 2s infinite linear;
+  animation: rotate 3s infinite linear;
 }
 
 @keyframes rotate {
