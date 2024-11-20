@@ -11,7 +11,7 @@
         bordered
         title=" 學生影片觀看次數 "
         :rows="studentWatchTimes"
-        :columns="columns"
+        :columns="studentColumns"
         row-key="index"
         virtual-scroll
         v-model:pagination="pagination"
@@ -21,7 +21,20 @@
   </div>
 
   <div style="border: 1px black solid">
-    <p>影片觀看總次數</p>
+    <div class="q-pa-md">
+      <q-table
+        style="height: auto; margin: 20px"
+        flat
+        bordered
+        title=" 影片觀看總次數 "
+        :rows="totalWatchTimes"
+        :columns="watchTimesColumns"
+        row-key="index"
+        virtual-scroll
+        v-model:pagination="pagination"
+        :rows-per-page-options="[0]"
+      />
+    </div>
   </div>
 </template>
 
@@ -29,9 +42,10 @@
 import { ref, reactive } from "vue";
 import ManageAllData from "../components/ManageAllData.vue";
 
-const columns = [
+const studentColumns = [
   {
     name: "name",
+    align: "center",
     required: true,
     label: "Name",
     align: "left",
@@ -46,10 +60,10 @@ const columns = [
     field: "total",
     sortable: true, // sort 箭頭
   },
-  { name: "one", label: "One", field: "one" },
-  { name: "two", label: "Two", field: "two" },
-  { name: "three", label: "Three", field: "three" },
-  { name: "four", label: "Four", field: "four" },
+  { name: "one", align: "center", label: "One", field: "one" },
+  { name: "two", align: "center", label: "Two", field: "two" },
+  { name: "three", align: "center", label: "Three", field: "three" },
+  { name: "four", align: "center", label: "Four", field: "four" },
 ];
 
 const accountSourceCount = (account, num) => {
@@ -57,7 +71,7 @@ const accountSourceCount = (account, num) => {
   if (accountWatchTimes[0]) {
     accountWatchTimes[0][num]++;
     accountWatchTimes[0].total = accountTotalWatchTimes(accountWatchTimes[0]);
-  }
+   }
 };
 
 const accountTotalWatchTimes = (account) => {
@@ -149,6 +163,51 @@ const studentWatchTimes = reactive([
     four: 4,
   },
 ]);
+
+const watchTimesColumns = [
+  { name: "total", align: "center", label: "Total", field: "total" },
+  { name: "one", align: "center", label: "One", field: "one" },
+  { name: "two", align: "center", label: "Two", field: "two" },
+  { name: "three", align: "center", label: "Three", field: "three" },
+  { name: "four", align: "center", label: "Four", field: "four" },
+];
+
+const totalOneWatchTimes = studentWatchTimes.reduce(
+  (sum, item) => sum + item.one,
+  0
+);
+const totalTwoWatchTimes = studentWatchTimes.reduce(
+  (sum, item) => sum + item.two,
+  0
+);
+const totalThreeWatchTimes = studentWatchTimes.reduce(
+  (sum, item) => sum + item.three,
+  0
+);
+const totalFourWatchTimes = studentWatchTimes.reduce(
+  (sum, item) => sum + item.four,
+  0
+);
+
+const totalWatchTimes = reactive([
+  {
+    total: 417,
+    one: totalOneWatchTimes,
+    two: totalTwoWatchTimes,
+    three: totalThreeWatchTimes,
+    four: totalFourWatchTimes,
+  },
+]);
+
+// const totalWatchTimes = reactive([
+//   studentWatchTimes.reduce((total, item) => {
+//     total.one += item.one || 0;
+//     total.two += item.two || 0;
+//     total.three += item.three || 0;
+//     total.four += item.four || 0;
+//     return total
+//   })
+// ]);
 
 const pagination = ref({
   rowsPerPage: 5,
