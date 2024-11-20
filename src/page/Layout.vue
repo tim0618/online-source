@@ -22,6 +22,16 @@
           "
         >
           <q-list padding>
+
+            <router-link class="navbar" to="/AAA">
+              <q-item active clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="inbox" />
+                </q-item-section>
+                <q-item-section> 酷專區 </q-item-section>
+              </q-item>
+            </router-link>
+
             <router-link class="navbar" to="/Index">
               <q-item clickable v-ripple>
                 <q-item-section avatar>
@@ -30,6 +40,15 @@
                 <q-item-section> 首頁 </q-item-section>
               </q-item>
             </router-link>
+
+            <router-link class="navbar" to="/Learn">
+                <q-item clickable v-ripple>
+                  <q-item-section avatar>
+                    <q-icon name="send" />
+                  </q-item-section>
+                  <q-item-section> 學習專區 </q-item-section>
+                </q-item>
+              </router-link>
 
             <q-expansion-item
               :content-inset-level="0.5"
