@@ -1,7 +1,16 @@
 <template>
   <div class="manageAllData">
     <div class="q-pa-md">
-      <div class="my-card" @click="source(1)"></div>
+      <div class="my-card" @click="source('one')"></div>
+    </div>
+    <div class="q-pa-md">
+      <div class="my-card" @click="source('two')"></div>
+    </div>
+    <div class="q-pa-md">
+      <div class="my-card" @click="source('three')"></div>
+    </div>
+    <div class="q-pa-md">
+      <div class="my-card" @click="source('four')"></div>
     </div>
   </div>
 </template>
@@ -24,8 +33,8 @@ const source = (num) => {
   flex-wrap: wrap;
 }
 .my-card {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 200px;
   border: 1px solid black;
   background-color: cornflowerblue;
 }
