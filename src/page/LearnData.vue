@@ -1,16 +1,16 @@
 <template>
   <div>
-    <manage-all-data />
+    <manage-all-data @sourceCount="accountSourceCount" />
   </div>
 
   <div style="border: 1px black solid">
     <div class="q-pa-md">
       <q-table
-        style="height: 400px"
+        style="height: 400px; margin: 20px"
         flat
         bordered
-        title=" 使用者影片觀看次數 "
-        :rows="rows"
+        title=" 學生影片觀看次數 "
+        :rows="studentWatchTimes"
         :columns="columns"
         row-key="index"
         virtual-scroll
@@ -26,15 +26,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, reactive } from "vue";
 import ManageAllData from "../components/ManageAllData.vue";
 
 const columns = [
-  {
-    name: "index",
-    label: "#",
-    field: "index",
-  },
   {
     name: "name",
     required: true,
@@ -45,10 +40,10 @@ const columns = [
     sortable: true,
   },
   {
-    name: "calories",
+    name: "total",
     align: "center",
     label: "Total",
-    field: "calories",
+    field: "total",
     sortable: true, // sort 箭頭
   },
   { name: "one", label: "One", field: "one" },
@@ -57,99 +52,103 @@ const columns = [
   { name: "four", label: "Four", field: "four" },
 ];
 
-const seed = [
+const accountSourceCount = (account, num) => {
+  const accountWatchTimes = studentWatchTimes.filter((s) => s.name === account);
+  if (accountWatchTimes[0]) {
+    accountWatchTimes[0][num]++;
+    accountWatchTimes[0].total = accountTotalWatchTimes(accountWatchTimes[0]);
+  }
+};
+
+const accountTotalWatchTimes = (account) => {
+  return ["one", "two", "three", "four"].reduce(
+    (sum, key) => sum + account[key],
+    0
+  );
+};
+
+const studentWatchTimes = reactive([
   {
-    name: "Frozen Yogurt",
-    calories: 159,
-    one: 6.0,
-    two: 24,
-    three: 4.0,
-    four: 87,
-  },
-  {
-    name: "Ice cream sandwich",
-    calories: 237,
-    one: 9.0,
-    two: 37,
-    three: 4.3,
-    four: 129,
-  },
-  {
-    name: "Eclair",
-    calories: 262,
-    one: 16.0,
-    two: 23,
-    three: 6.0,
-    four: 337,
-  },
-  {
-    name: "Cupcake",
-    calories: 305,
-    one: 3.7,
-    two: 67,
-    three: 4.3,
-    four: 413,
-  },
-  {
-    name: "Gingerbread",
-    calories: 356,
-    one: 16.0,
-    two: 49,
-    three: 3.9,
-    four: 327,
-  },
-  {
-    name: "Jelly bean",
-    calories: 0,
+    name: "Tim",
+    total: 0,
     one: 0,
     two: 0,
     three: 0,
     four: 0,
   },
-  // {
-  //   name: "Lollipop",
-  //   calories: 392,
-  //   one: 0.2,
-  //   two: 98,
-  //   three: 0,
-  //   four: 38,
-  // },
-  // {
-  //   name: "Honeycomb",
-  //   calories: 408,
-  //   one: 3.2,
-  //   two: 87,
-  //   three: 6.5,
-  //   four: 562,
-  // },
-  // {
-  //   name: "Donut",
-  //   calories: 452,
-  //   one: 25.0,
-  //   two: 51,
-  //   three: 4.9,
-  //   four: 326,
-  // },
-  // {
-  //   name: "KitKat",
-  //   calories: 518,
-  //   one: 26.0,
-  //   two: 65,
-  //   three: 7,
-  //   four: 54,
-  // },
-];
-
-let rows = ref([]);
-
-onMounted(() => {
-  // for (let i = 0; i < 10; i++) {
-  rows.value = rows.value.concat(seed.slice(0).map((r) => ({ ...r })));
-  // }
-  rows.value.forEach((row, index) => {
-    row.index = index;
-  });
-});
+  {
+    name: "Henry",
+    total: 112,
+    one: 13,
+    two: 37,
+    three: 43,
+    four: 19,
+  },
+  {
+    name: "Buzz",
+    total: 46,
+    one: 10,
+    two: 23,
+    three: 6,
+    four: 7,
+  },
+  {
+    name: "JL",
+    total: 16,
+    one: 3,
+    two: 6,
+    three: 4,
+    four: 3,
+  },
+  {
+    name: "Charlie",
+    total: 22,
+    one: 1,
+    two: 4,
+    three: 9,
+    four: 7,
+  },
+  {
+    name: "Matt",
+    total: 4,
+    one: 4,
+    two: 0,
+    three: 0,
+    four: 0,
+  },
+  {
+    name: "Apple",
+    total: 28,
+    one: 2,
+    two: 8,
+    three: 10,
+    four: 8,
+  },
+  {
+    name: "Boris",
+    total: 17,
+    one: 2,
+    two: 8,
+    three: 5,
+    four: 2,
+  },
+  {
+    name: "FuSoon",
+    total: 151,
+    one: 25,
+    two: 51,
+    three: 49,
+    four: 26,
+  },
+  {
+    name: "Tina",
+    total: 22,
+    one: 6,
+    two: 5,
+    three: 7,
+    four: 4,
+  },
+]);
 
 const pagination = ref({
   rowsPerPage: 5,
