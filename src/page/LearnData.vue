@@ -10,7 +10,7 @@
         flat
         bordered
         title=" 學生影片觀看次數 "
-        :rows="studentWatchTimes"
+        :rows="studentViews"
         :columns="studentColumns"
         row-key="index"
         virtual-scroll
@@ -19,16 +19,15 @@
       />
     </div>
   </div>
-
   <div style="border: 1px black solid">
     <div class="q-pa-md">
       <q-table
-        style="height: auto; margin: 20px"
+        style="height: 400px; margin: 20px"
         flat
         bordered
-        title=" 影片觀看總次數 "
-        :rows="totalWatchTimes"
-        :columns="watchTimesColumns"
+        title=" 學生影片觀看時間 "
+        :rows="studentViewTimes"
+        :columns="studentColumns"
         row-key="index"
         virtual-scroll
         v-model:pagination="pagination"
@@ -58,30 +57,16 @@ const studentColumns = [
     align: "center",
     label: "Total",
     field: "total",
-    sortable: true, // sort 箭頭
-  },
+    sortable: true,
+  }, // sort 箭頭
+  ,
   { name: "one", align: "center", label: "One", field: "one" },
   { name: "two", align: "center", label: "Two", field: "two" },
   { name: "three", align: "center", label: "Three", field: "three" },
   { name: "four", align: "center", label: "Four", field: "four" },
 ];
 
-const accountSourceCount = (account, num) => {
-  const accountWatchTimes = studentWatchTimes.filter((s) => s.name === account);
-  if (accountWatchTimes[0]) {
-    accountWatchTimes[0][num]++;
-    accountWatchTimes[0].total = accountTotalWatchTimes(accountWatchTimes[0]);
-   }
-};
-
-const accountTotalWatchTimes = (account) => {
-  return ["one", "two", "three", "four"].reduce(
-    (sum, key) => sum + account[key],
-    0
-  );
-};
-
-const studentWatchTimes = reactive([
+const studentViews = reactive([
   {
     name: "Tim",
     total: 0,
@@ -164,50 +149,37 @@ const studentWatchTimes = reactive([
   },
 ]);
 
-const watchTimesColumns = [
-  { name: "total", align: "center", label: "Total", field: "total" },
-  { name: "one", align: "center", label: "One", field: "one" },
-  { name: "two", align: "center", label: "Two", field: "two" },
-  { name: "three", align: "center", label: "Three", field: "three" },
-  { name: "four", align: "center", label: "Four", field: "four" },
-];
-
-const totalOneWatchTimes = studentWatchTimes.reduce(
-  (sum, item) => sum + item.one,
-  0
-);
-const totalTwoWatchTimes = studentWatchTimes.reduce(
-  (sum, item) => sum + item.two,
-  0
-);
-const totalThreeWatchTimes = studentWatchTimes.reduce(
-  (sum, item) => sum + item.three,
-  0
-);
-const totalFourWatchTimes = studentWatchTimes.reduce(
-  (sum, item) => sum + item.four,
-  0
-);
-
-const totalWatchTimes = reactive([
+const studentViewTimes = reactive([
   {
-    total: 417,
-    one: totalOneWatchTimes,
-    two: totalTwoWatchTimes,
-    three: totalThreeWatchTimes,
-    four: totalFourWatchTimes,
+    name: "Tim",
+    total: 0,
+    one: 0,
+    two: 0,
+    three: 0,
+    four: 0,
   },
 ]);
 
-// const totalWatchTimes = reactive([
-//   studentWatchTimes.reduce((total, item) => {
-//     total.one += item.one || 0;
-//     total.two += item.two || 0;
-//     total.three += item.three || 0;
-//     total.four += item.four || 0;
-//     return total
-//   })
-// ]);
+const accountSourceCount = (account, num, watchTime) => {
+  console.log("AAA", watchTime.value);
+  const accountTimes = studentViews.filter((s) => s.name === account);
+  const accountViewTimes = studentViewTimes.filter((s) => s.name === account);
+
+  if (accountTimes[0]) {
+    accountTimes[0][num]++;
+    accountTimes[0].total = accountTotalWatchViews(accountTimes[0]);
+
+    accountViewTimes[0][num] += watchTime.value;
+    accountViewTimes[0].total = accountTotalWatchViews(accountViewTimes[0]);
+  }
+};
+
+const accountTotalWatchViews = (account) => {
+  return ["one", "two", "three", "four"].reduce(
+    (sum, key) => sum + account[key],
+    0
+  );
+};
 
 const pagination = ref({
   rowsPerPage: 5,

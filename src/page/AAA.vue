@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="font-size: 30px;">計時器</div>
+    <div style="font-size: 30px">計時器</div>
     <q-btn label="打開 Dialog" @click="openDialog" />
     <q-dialog v-model="dialogVisible" @show="startTiming" @hide="stopTiming">
       <q-card>
@@ -16,35 +16,23 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script setup>
+import { ref } from "vue";
 
-export default {
-  setup() {
-    const dialogVisible = ref(false);
-    const watchTime = ref(0);
-    let startTime = 0;
+const dialogVisible = ref(false);
+const watchTime = ref(0);
+let startTime = 0;
 
-    const openDialog = () => {
-      dialogVisible.value = true;
-    };
+const openDialog = () => {
+  dialogVisible.value = true;
+};
 
-    const startTiming = () => {
-      startTime = Date.now(); // 記錄打開時間
-    };
+const startTiming = () => {
+  startTime = Date.now(); // 記錄打開時間
+};
 
-    const stopTiming = () => {
-      const endTime = Date.now();
-      watchTime.value = Math.floor((endTime - startTime) / 1000); // 計算秒數
-    };
-
-    return {
-      dialogVisible,
-      watchTime,
-      openDialog,
-      startTiming,
-      stopTiming,
-    };
-  },
+const stopTiming = () => {
+  const endTime = Date.now();
+  watchTime.value = Math.floor((endTime - startTime) / 1000); // 計算秒數
 };
 </script>

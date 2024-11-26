@@ -1,26 +1,92 @@
 <template>
+  <!-- @show：當組件（如彈窗、對話框）被顯示時觸發。例如，開啟對話框時執行某些初始化操作。 -->
+  <!-- @hide：當組件被隱藏時觸發。例如，關閉對話框時停止某些動作或清理數據。 -->
+
   <div class="manageAllData">
     <div class="q-pa-md">
-      <div class="my-card" @click="source('one')"></div>
+      <q-btn class="myCard" @click="oneVisible = true"> {{ watchTime }} </q-btn>
     </div>
     <div class="q-pa-md">
-      <div class="my-card" @click="source('two')"></div>
+      <q-btn class="myCard" @click="twoVisible = true"> {{ watchTime }} </q-btn>
     </div>
     <div class="q-pa-md">
-      <div class="my-card" @click="source('three')"></div>
+      <q-btn class="myCard" @click="threeVisible = true"> {{ watchTime }} </q-btn>
     </div>
     <div class="q-pa-md">
-      <div class="my-card" @click="source('four')"></div>
+      <q-btn class="myCard" @click="fourVisible = true"> {{ watchTime }} </q-btn>
     </div>
   </div>
+
+  <q-dialog v-model="oneVisible" @show="startTiming" persistent>
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">哈囉我是第一</div>
+      </q-card-section>
+      <q-card-actions alige="right">
+        <q-btn flat label="關閉" @click="source('one')" />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
+  <q-dialog v-model="twoVisible" @show="startTiming" >
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">哈囉我是第二</div>
+      </q-card-section>
+      <q-card-actions alige="right">
+        <q-btn flat label="關閉" @click="source('two')" />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
+  <q-dialog v-model="threeVisible" @show="startTiming" >
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">哈囉我是第三</div>
+      </q-card-section>
+      <q-card-actions alige="right">
+        <q-btn flat label="關閉" @click="source('three')" />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
+  <q-dialog v-model="fourVisible" @show="startTiming" >
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">哈囉我是第四</div>
+      </q-card-section>
+      <q-card-actions alige="right">
+        <q-btn flat label="關閉" @click="source('four')" />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script setup>
+import { ref } from "vue";
+
+const oneVisible = ref(false);const twoVisible = ref(false);
+const threeVisible = ref(false);const fourVisible = ref(false);
+
+const watchTime = ref(0);
+let startTime = 0;
+
+const startTiming = () => {
+  startTime = Date.now(); // 記錄打開時間
+};
+
+// 生命週期錯誤
+// const stopTiming = () => {
+//   const endTime = Date.now();
+//   watchTime.value = Math.floor((endTime - startTime) / 1000); // 計算秒數
+// };
+
 const emit = defineEmits(["sourceCount"]);
 
-const source = (num) => {
+const source = (sourceNum) => {
+  oneVisible.value = false;twoVisible.value = false;threeVisible.value = false;fourVisible.value = false;
+  const endTime = Date.now();
+  watchTime.value = Math.floor((endTime - startTime) / 1000);
+
   const account = localStorage.getItem("account");
-  emit("sourceCount", account, num);
+  emit("sourceCount", account, sourceNum, watchTime);
 
   // console.log(account + "課程" + num + "觀看+1");
 };
@@ -32,7 +98,7 @@ const source = (num) => {
   border: 1px black solid;
   flex-wrap: wrap;
 }
-.my-card {
+.myCard {
   width: 250px;
   height: 200px;
   border: 1px solid black;
@@ -40,19 +106,9 @@ const source = (num) => {
 }
 
 /* @media (max-width: 960px) {
-  .my-card {
+  .myCard {
     width: 100%;
     max-width: 350px;
   }
 } */
 </style>
-
-<!-- <q-card class="my-card">
-        <q-video
-          src="https://www.youtube.com/embed/mr5W8MqW0Mg?si=x_1VXyL3O9YQDFTY"
-        />
-        <q-card-section>
-          <div class="text-h6">First</div>
-          <div class="text-subtitle2">by Chun Ting</div>
-        </q-card-section>
-      </q-card> -->
