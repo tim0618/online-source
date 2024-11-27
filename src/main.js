@@ -14,7 +14,6 @@ import LearData from "./page/LearnData.vue";
 import TrafficData from "./page/TrafficData.vue";
 import Experience from "./page/Experience.vue";
 import ManageData from "./page/ManageData.vue";
-import Learn from './page/Learn.vue'
 
 import AAA from './page/AAA.vue'
 
@@ -27,10 +26,6 @@ const routes = [
   {
     path: "/Index",
     component: Index,
-  },
-  {
-    path: "/Learn",
-    component: Learn,
   },
   {
     path: "/LearnData",

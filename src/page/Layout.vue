@@ -22,16 +22,6 @@
           "
         >
           <q-list padding>
-
-            <router-link class="navbar" to="/AAA">
-              <q-item active clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="inbox" />
-                </q-item-section>
-                <q-item-section> 酷專區 </q-item-section>
-              </q-item>
-            </router-link>
-
             <router-link class="navbar" to="/Index">
               <q-item clickable v-ripple>
                 <q-item-section avatar>
@@ -41,14 +31,41 @@
               </q-item>
             </router-link>
 
-            <router-link class="navbar" to="/Learn">
-                <q-item clickable v-ripple>
-                  <q-item-section avatar>
-                    <q-icon name="send" />
-                  </q-item-section>
-                  <q-item-section> 學習專區 </q-item-section>
-                </q-item>
-              </router-link>
+            <router-link class="navbar" to="/LearnData">
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="send" />
+                </q-item-section>
+                <q-item-section> 學習專區 </q-item-section>
+              </q-item>
+            </router-link>
+
+            <router-link class="navbar" to="/Experience">
+              <q-item clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="drafts" />
+                </q-item-section>
+                <q-item-section> 學習心得 </q-item-section>
+              </q-item>
+            </router-link>
+
+            <router-link class="navbar" to="/ManageData">
+              <q-item active clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="drafts" />
+                </q-item-section>
+                <q-item-section> 資源管理 </q-item-section>
+              </q-item>
+            </router-link>
+
+            <router-link class="navbar" to="/AAA">
+              <q-item active clickable v-ripple>
+                <q-item-section avatar>
+                  <q-icon name="inbox" />
+                </q-item-section>
+                <q-item-section> 酷專區 </q-item-section>
+              </q-item>
+            </router-link>
 
             <q-expansion-item
               :content-inset-level="0.5"
@@ -74,25 +91,6 @@
                 </q-item>
               </router-link>
             </q-expansion-item>
-
-            <router-link class="navbar" to="/Experience">
-              <q-item clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="drafts" />
-                </q-item-section>
-                <q-item-section> 學習心得 </q-item-section>
-              </q-item>
-            </router-link>
-
-            <router-link class="navbar" to="/ManageData">
-              <q-item active clickable v-ripple>
-                <q-item-section avatar>
-                  <q-icon name="drafts" />
-                </q-item-section>
-                <q-item-section> 資源管理 </q-item-section>
-              </q-item>
-            </router-link>
-
           </q-list>
         </q-scroll-area>
 
