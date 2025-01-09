@@ -4,16 +4,39 @@
 
   <div class="manageAllData">
     <div class="q-pa-md">
-      <q-btn class="myCard" @click="oneVisible = true"> {{ watchTime }} </q-btn>
+      <q-btn class="myCard" @click="oneVisible = true">
+        <img
+          class="btn-image"
+          src="https://images.pexels.com/photos/743986/pexels-photo-743986.jpeg"
+          alt="Image"
+        />
+      </q-btn>
     </div>
     <div class="q-pa-md">
-      <q-btn class="myCard" @click="twoVisible = true"> {{ watchTime }} </q-btn>
+      <q-btn class="myCard" @click="twoVisible = true">
+        <img
+          class="btn-image"
+          src="https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg"
+          alt="Image"
+      /></q-btn>
     </div>
     <div class="q-pa-md">
-      <q-btn class="myCard" @click="threeVisible = true"> {{ watchTime }} </q-btn>
+      <q-btn class="myCard" @click="threeVisible = true"
+        ><img
+          class="btn-image"
+          src="https://images.pexels.com/photos/355952/pexels-photo-355952.jpeg"
+          alt="Image"
+        />
+      </q-btn>
     </div>
     <div class="q-pa-md">
-      <q-btn class="myCard" @click="fourVisible = true"> {{ watchTime }} </q-btn>
+      <q-btn class="myCard" @click="fourVisible = true"
+        ><img
+          class="btn-image"
+          src="https://images.pexels.com/photos/5910768/pexels-photo-5910768.jpeg"
+          alt="Image"
+        />
+      </q-btn>
     </div>
   </div>
 
@@ -27,7 +50,7 @@
       </q-card-actions>
     </q-card>
   </q-dialog>
-  <q-dialog v-model="twoVisible" @show="startTiming" >
+  <q-dialog v-model="twoVisible" @show="startTiming">
     <q-card>
       <q-card-section>
         <div class="text-h6">哈囉我是第二</div>
@@ -37,7 +60,7 @@
       </q-card-actions>
     </q-card>
   </q-dialog>
-  <q-dialog v-model="threeVisible" @show="startTiming" >
+  <q-dialog v-model="threeVisible" @show="startTiming">
     <q-card>
       <q-card-section>
         <div class="text-h6">哈囉我是第三</div>
@@ -47,7 +70,7 @@
       </q-card-actions>
     </q-card>
   </q-dialog>
-  <q-dialog v-model="fourVisible" @show="startTiming" >
+  <q-dialog v-model="fourVisible" @show="startTiming">
     <q-card>
       <q-card-section>
         <div class="text-h6">哈囉我是第四</div>
@@ -62,8 +85,10 @@
 <script setup>
 import { ref } from "vue";
 
-const oneVisible = ref(false);const twoVisible = ref(false);
-const threeVisible = ref(false);const fourVisible = ref(false);
+const oneVisible = ref(false);
+const twoVisible = ref(false);
+const threeVisible = ref(false);
+const fourVisible = ref(false);
 
 const watchTime = ref(0);
 let startTime = 0;
@@ -81,7 +106,10 @@ const startTiming = () => {
 const emit = defineEmits(["sourceCount"]);
 
 const source = (sourceNum) => {
-  oneVisible.value = false;twoVisible.value = false;threeVisible.value = false;fourVisible.value = false;
+  oneVisible.value = false;
+  twoVisible.value = false;
+  threeVisible.value = false;
+  fourVisible.value = false;
   const endTime = Date.now();
   watchTime.value = Math.floor((endTime - startTime) / 1000);
 
@@ -104,7 +132,15 @@ const source = (sourceNum) => {
   border: 1px solid black;
   background-color: cornflowerblue;
 }
-
+.btn-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 確保圖片完全填滿且不變形 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
 /* @media (max-width: 960px) {
   .myCard {
     width: 100%;

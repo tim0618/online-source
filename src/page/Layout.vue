@@ -6,9 +6,9 @@
       style="height: 100vh"
       class="shadow-2 rounded-borders"
     >
-      <q-header elevated class="bg-cyan-10" style="height: 10vh">
+      <q-header elevated class="bg-cyan-10" style="height: 8vh">
         <q-toolbar>
-          <q-toolbar-title>Header</q-toolbar-title>
+          <q-toolbar-title>歡迎來到 TT 心靈課程 ~~</q-toolbar-title>
           <button @click="logout">登出</button>
         </q-toolbar>
       </q-header>
