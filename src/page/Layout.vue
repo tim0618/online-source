@@ -67,7 +67,7 @@
               </q-item>
             </router-link>
 
-            <q-expansion-item
+            <!-- <q-expansion-item
               :content-inset-level="0.5"
               expand-separator
               icon="star"
@@ -90,7 +90,8 @@
                   <q-item-section> 流量數據 </q-item-section>
                 </q-item>
               </router-link>
-            </q-expansion-item>
+            </q-expansion-item> -->
+
           </q-list>
         </q-scroll-area>
 

@@ -4,7 +4,7 @@
       <div id="animationelement" :class="animationClass"></div>
     </div>
 
-    <button
+    <!-- <button
       class="waves-effect waves-light btn-large white blue-text"
       @click="triggerRotation"
     >
@@ -16,7 +16,7 @@
       <a href="https://kristofferandreasen.github.io/wickedCSS/#"
         >https://kristofferandreasen.github.io/wickedCSS/#</a
       >
-    </p>
+    </p> -->
   </div>
 </template>
 
